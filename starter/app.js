@@ -42,6 +42,8 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
 
 
         //Next player
+        nextPlayer();
+
         //        activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
         //        roundScore = 0;
         //        document.getElementById('current-0').textContent = '0';
@@ -55,11 +57,13 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
         //
         //        document.querySelector('.dice').style.display = 'none';
 
-        nextPlayer();
+
     }
+
 });
 
-document.querySelector('btn-hold').addEventListener('click', function () {
+
+document.querySelector('.btn-hold').addEventListener('click', function () {
     //1. add current score to player global score
     scores[activePlayer] += roundScore;
 
@@ -67,12 +71,18 @@ document.querySelector('btn-hold').addEventListener('click', function () {
     document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
 
     //3. check if player won the game
+    if (scores[activePlayer] >= 10) {
+        document.querySelector('#name-' + activePlayer).textContent = 'Winner, Winner Chicken Dinner!';
 
+        document.querySelector('.dice').style.display = 'none';
 
-    //4. switch to other player
-    nextPlayer();
+        document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
 
+    } else {
+        //4. switch to other player
+        nextPlayer();
 
+    }
 
 });
 
@@ -90,8 +100,8 @@ function nextPlayer() {
 
     document.querySelector('.dice').style.display = 'none';
 
-}
-});
+};
+
 
 //function btn() {
 //
