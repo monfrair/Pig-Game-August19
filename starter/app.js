@@ -39,22 +39,59 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
         roundScore += dice;
         document.querySelector('#current-' + activePlayer).textContent = roundScore;
     } else {
-        //Next player
-        activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
-        roundScore = 0;
-        document.getElementById('current-0').textContent = '0';
-        document.getElementById('current-1').textContent = '0';
 
-        document.querySelector('.player-0-panel').classList.remove('active');
-        document.querySelector('.player-1-panel').classList.add('active');
+
+        //Next player
+        //        activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
+        //        roundScore = 0;
+        //        document.getElementById('current-0').textContent = '0';
+        //        document.getElementById('current-1').textContent = '0';
+        //
+        //        document.querySelector('.player-0-panel').classList.toggle('active');
+        //        document.querySelector('.player-1-panel').classList.toggle('active');
+        //
+        //        //        document.querySelector('.player-0-panel').classList.remove('active');
+        //        //        document.querySelector('.player-1-panel').classList.add('active');
+        //
+        //        document.querySelector('.dice').style.display = 'none';
+
+        nextPlayer();
     }
 });
 
+document.querySelector('btn-hold').addEventListener('click', function () {
+    //1. add current score to player global score
+    scores[activePlayer] += roundScore;
+
+    //2. Update UI 
+    document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
+
+    //3. check if player won the game
+
+
+    //4. switch to other player
+    nextPlayer();
 
 
 
+});
 
+function nextPlayer() {
+    activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
+    roundScore = 0;
+    document.getElementById('current-0').textContent = '0';
+    document.getElementById('current-1').textContent = '0';
 
+    document.querySelector('.player-0-panel').classList.toggle('active');
+    document.querySelector('.player-1-panel').classList.toggle('active');
+
+    //        document.querySelector('.player-0-panel').classList.remove('active');
+    //        document.querySelector('.player-1-panel').classList.add('active');
+
+    document.querySelector('.dice').style.display = 'none';
+
+}
+});
 
 //function btn() {
 //
