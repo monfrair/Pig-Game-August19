@@ -10,19 +10,7 @@ GAME RULES:
 */
 var scores, roundScore, activePlayer;
 
-scores = [0, 0];
-roundScore = 0;
-activePlayer = 0;
-
-
-
-document.querySelector('.dice').style.display = 'none';
-
-document.getElementById('score-0').textContent = '0';
-document.getElementById('score-1').textContent = '0';
-document.getElementById('current-0').textContent = '0';
-document.getElementById('current-1').textContent = '0';
-
+init();
 
 
 document.querySelector('.btn-roll').addEventListener('click', function () {
@@ -71,12 +59,13 @@ document.querySelector('.btn-hold').addEventListener('click', function () {
     document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
 
     //3. check if player won the game
-    if (scores[activePlayer] >= 10) {
+    if (scores[activePlayer] >= 150) {
         document.querySelector('#name-' + activePlayer).textContent = 'Winner, Winner Chicken Dinner!';
 
         document.querySelector('.dice').style.display = 'none';
 
         document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
+        document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
 
     } else {
         //4. switch to other player
@@ -100,7 +89,27 @@ function nextPlayer() {
 
     document.querySelector('.dice').style.display = 'none';
 
-};
+}
+
+document.querySelector('.btn-new').addEventListener('click', init);
+
+
+
+function init() {
+    scores = [0, 0];
+    activePlayer = 0;
+    roundScore = 0;
+
+    document.querySelector('.dice').style.display = 'none';
+
+    document.getElementById('score-0').textContent = '0';
+    document.getElementById('score-1').textContent = '0';
+    document.getElementById('current-0').textContent = '0';
+    document.getElementById('current-1').textContent = '0';
+    document.getElementById('name-0').textContent = 'Player 1';
+    document.getElementById('name-1').textContent = 'Player 2';
+
+}
 
 
 //function btn() {
